@@ -1,0 +1,627 @@
+warning: returning the result of a let binding from a block. Consider returning the expression directly.
+   --> src/main.rs:178:9
+    |
+178 |         view
+    |         ^^^^
+    |
+    = note: #[warn(let_and_return)] on by default
+note: this expression can be directly returned
+   --> src/main.rs:173:20
+    |
+173 |           let view = cgmath::Matrix4::look_at(
+    |  ____________________^
+174 | |             Point3::from_vec(self.camera_pos),
+175 | |             Point3::from_vec(self.camera_front),
+176 | |             self.camera_up,
+177 | |         );
+    | |_________^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#let_and_return
+
+warning: this if statement can be collapsed
+   --> src/main.rs:621:9
+    |
+621 | /         if i.is_active() {
+622 | |             if i.position() == proposed_position {
+623 | |                 return Some(index);
+624 | |             }
+625 | |         }
+    | |_________^
+    |
+    = note: #[warn(collapsible_if)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#collapsible_if
+help: try
+    |
+621 |         if i.is_active() && i.position() == proposed_position {
+622 |     return Some(index);
+623 | }
+    |
+
+warning: long literal lacking separators
+    --> src/main.rs:1093:67
+     |
+1093 |                     let initialisation_buffer = vec![-10_f32; 8 * 100312];
+     |                                                                   ^^^^^^
+     |
+     = note: #[warn(unreadable_literal)] on by default
+     = help: consider: 100_312
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#unreadable_literal
+
+warning: long literal lacking separators
+    --> src/main.rs:1096:33
+     |
+1096 |                         8 * 4 * 100312,
+     |                                 ^^^^^^
+     |
+     = help: consider: 100_312
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#unreadable_literal
+
+warning: long literal lacking separators
+    --> src/main.rs:1114:40
+     |
+1114 |                 let temp = vec![0_u32; 800000];
+     |                                        ^^^^^^
+     |
+     = help: consider: 800_000
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#unreadable_literal
+
+warning: long literal lacking separators
+    --> src/main.rs:1117:21
+     |
+1117 |                     160000 * 4,
+     |                     ^^^^^^
+     |
+     = help: consider: 160_000
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#unreadable_literal
+
+warning: unneeded return statement
+    --> src/main.rs:1304:25
+     |
+1304 |                         return (x_match && y_match, false);
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: remove `return` as shown: `(x_match && y_match, false)`
+     |
+     = note: #[warn(needless_return)] on by default
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_return
+
+warning: this if statement can be collapsed
+    --> src/main.rs:1268:33
+     |
+1268 | /                                 if my_position[0] == wall_position[0] {
+1269 | |                                     if my_position[1] - wall_position[1] == -1 ||
+1270 | |                                         my_position[1] - wall_position[1] == 1
+1271 | |                                     {
+1272 | |                                         x_match = true;
+1273 | |                                     }
+1274 | |                                 }
+     | |_________________________________^
+     |
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#collapsible_if
+help: try
+     |
+1268 |                                 if my_position[0] == wall_position[0] && (my_position[1] - wall_position[1] == -1 ||
+1269 |                                         my_position[1] - wall_position[1] == 1) {
+1270 |     x_match = true;
+1271 | }
+     |
+
+warning: this if statement can be collapsed
+    --> src/main.rs:1275:33
+     |
+1275 | /                                 if my_position[1] == wall_position[1] {
+1276 | |                                     if my_position[0] - wall_position[0] == -1 ||
+1277 | |                                         my_position[0] - wall_position[0] == 1
+1278 | |                                     {
+1279 | |                                         y_match = true;
+1280 | |                                     }
+1281 | |                                 }
+     | |_________________________________^
+     |
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#collapsible_if
+help: try
+     |
+1275 |                                 if my_position[1] == wall_position[1] && (my_position[0] - wall_position[0] == -1 ||
+1276 |                                         my_position[0] - wall_position[0] == 1) {
+1277 |     y_match = true;
+1278 | }
+     |
+
+warning: this if statement can be collapsed
+    --> src/main.rs:1289:29
+     |
+1289 | /                             if my_position[0] == wall_position[0] {
+1290 | |                                 if my_position[1] - wall_position[1] == -1 ||
+1291 | |                                     my_position[1] - wall_position[1] == 1
+1292 | |                                 {
+1293 | |                                     x_match = true;
+1294 | |                                 }
+1295 | |                             }
+     | |_____________________________^
+     |
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#collapsible_if
+help: try
+     |
+1289 |                             if my_position[0] == wall_position[0] && (my_position[1] - wall_position[1] == -1 ||
+1290 |                                     my_position[1] - wall_position[1] == 1) {
+1291 |     x_match = true;
+1292 | }
+     |
+
+warning: this if statement can be collapsed
+    --> src/main.rs:1296:29
+     |
+1296 | /                             if my_position[1] == wall_position[1] {
+1297 | |                                 if my_position[0] - wall_position[0] == -1 ||
+1298 | |                                     my_position[0] - wall_position[0] == 1
+1299 | |                                 {
+1300 | |                                     y_match = true;
+1301 | |                                 }
+1302 | |                             }
+     | |_____________________________^
+     |
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#collapsible_if
+help: try
+     |
+1296 |                             if my_position[1] == wall_position[1] && (my_position[0] - wall_position[0] == -1 ||
+1297 |                                     my_position[0] - wall_position[0] == 1) {
+1298 |     y_match = true;
+1299 | }
+     |
+
+warning: this argument is passed by value, but not consumed in the function body
+  --> src/main.rs:39:55
+   |
+39 | fn gen_shader<T: Into<Vec<u8>>>(code: T, shader_type: ShaderType) -> GLuint {
+   |                                                       ^^^^^^^^^^
+   |
+   = note: #[warn(needless_pass_by_value)] on by default
+   = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_pass_by_value
+help: consider taking a reference instead
+   |
+39 | fn gen_shader<T: Into<Vec<u8>>>(code: T, shader_type: &ShaderType) -> GLuint {
+40 |     let c_str = CString::new(code).unwrap();
+41 |     unsafe {
+42 |         let shader = *{
+43 |             match shader_type {
+44 |                 ShaderType::Vertex => gl::CreateShader(gl::VERTEX_SHADER),
+ ...
+
+warning: struct update has no effect, all the fields in the struct have already been specified
+  --> src/main.rs:89:19
+   |
+89 |                 ..Default::default()
+   |                   ^^^^^^^^^^^^^^^^^^
+   |
+   = note: #[warn(needless_update)] on by default
+   = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_update
+
+warning: using `clone` on a `Copy` type
+   --> src/main.rs:185:31
+    |
+185 |                     let pos = self.camera_pos.clone();
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^ help: try removing the `clone` call: `self.camera_pos`
+    |
+    = note: #[warn(clone_on_copy)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#clone_on_copy
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:190:33
+    |
+190 |                                 CString::new("u_View").unwrap().as_ptr(),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: #[warn(temporary_cstring_as_ptr)] on by default
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:190:33
+    |
+190 |                                 CString::new("u_View").unwrap().as_ptr(),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:200:33
+    |
+200 |                                 CString::new("view_pos").unwrap().as_ptr(),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:200:33
+    |
+200 |                                 CString::new("view_pos").unwrap().as_ptr(),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:285:21
+    |
+285 |                     CString::new("light_pos").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:285:21
+    |
+285 |                     CString::new("light_pos").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:294:21
+    |
+294 |                     CString::new("ambient_strength").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:294:21
+    |
+294 |                     CString::new("ambient_strength").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:301:21
+    |
+301 |                     CString::new("spec_samples").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:301:21
+    |
+301 |                     CString::new("spec_samples").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: using '.clone()' on a ref-counted pointer
+   --> src/main.rs:339:19
+    |
+339 |     let proceed = g.subroutine.get(&3).unwrap().clone();
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try this: `Arc::clone(&g.subroutine.get(&3).unwrap())`
+    |
+    = note: #[warn(clone_on_ref_ptr)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#clone_on_ref_ptr
+
+warning: called `.get().unwrap()` on a HashMap. Using `[]` is more clear and more concise
+   --> src/main.rs:339:19
+    |
+339 |     let proceed = g.subroutine.get(&3).unwrap().clone();
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try this: `&g.subroutine[&3]`
+    |
+    = note: #[warn(get_unwrap)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#get_unwrap
+
+warning: using '.clone()' on a ref-counted pointer
+   --> src/main.rs:378:23
+    |
+378 |         let proceed = g.subroutine.get(&3).unwrap().clone();
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try this: `Arc::clone(&g.subroutine.get(&3).unwrap())`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#clone_on_ref_ptr
+
+warning: called `.get().unwrap()` on a HashMap. Using `[]` is more clear and more concise
+   --> src/main.rs:378:23
+    |
+378 |         let proceed = g.subroutine.get(&3).unwrap().clone();
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try this: `&g.subroutine[&3]`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#get_unwrap
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:394:29
+    |
+394 |                             CString::new("ambient_strength").unwrap().as_ptr(),
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:394:29
+    |
+394 |                             CString::new("ambient_strength").unwrap().as_ptr(),
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:401:29
+    |
+401 |                             CString::new("spec_samples").unwrap().as_ptr(),
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:401:29
+    |
+401 |                             CString::new("spec_samples").unwrap().as_ptr(),
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:408:29
+    |
+408 |                             CString::new("light_pos").unwrap().as_ptr(),
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:408:29
+    |
+408 |                             CString::new("light_pos").unwrap().as_ptr(),
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: equality checks against false can be replaced by a negation
+   --> src/main.rs:417:20
+    |
+417 |                 if *proceed.lock().unwrap() == false {
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try simplifying it as shown: `!(*proceed.lock().unwrap())`
+    |
+    = note: #[warn(bool_comparison)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#bool_comparison
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:438:33
+    |
+438 |                                 CString::new("light_pos").unwrap().as_ptr(),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:438:33
+    |
+438 |                                 CString::new("light_pos").unwrap().as_ptr(),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:490:21
+    |
+490 |                     CString::new("ambient_strength").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:490:21
+    |
+490 |                     CString::new("ambient_strength").unwrap().as_ptr(),
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: called `.get().unwrap()` on a HashMap. Using `[]` is more clear and more concise
+   --> src/main.rs:508:14
+    |
+508 |             *self.subroutine.get(&key).unwrap().lock().unwrap() = false;
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try this: `&self.subroutine[&key]`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#get_unwrap
+
+warning: this expression borrows a reference that is immediately dereferenced by the compiler
+   --> src/main.rs:541:29
+    |
+541 |             |x| (x.correct)(&x, &self.floor_tiles[..]),
+    |                             ^^ help: change this to: `x`
+    |
+    = note: #[warn(needless_borrow)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_borrow
+
+warning: this expression borrows a reference that is immediately dereferenced by the compiler
+   --> src/main.rs:549:42
+    |
+549 |                 .map(|x| if !(x.correct)(&x, &self.floor_tiles) {
+    |                                          ^^ help: change this to: `x`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_borrow
+
+warning: this expression borrows a reference that is immediately dereferenced by the compiler
+   --> src/main.rs:550:33
+    |
+550 |                     (x.screwed)(&x, &self.walls[..], &self.crates[..])
+    |                                 ^^ help: change this to: `x`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_borrow
+
+warning: equality checks against true are unnecessary
+   --> src/main.rs:556:39
+    |
+556 |             if a.iter().any(|&(_, x)| x == true) || a.iter().all(|&(x, _)| x == true) {
+    |                                       ^^^^^^^^^ help: try simplifying it as shown: `x`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#bool_comparison
+
+warning: equality checks against true are unnecessary
+   --> src/main.rs:556:76
+    |
+556 |             if a.iter().any(|&(_, x)| x == true) || a.iter().all(|&(x, _)| x == true) {
+    |                                                                            ^^^^^^^^^ help: try simplifying it as shown: `x`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#bool_comparison
+
+warning: this argument is passed by value, but not consumed in the function body
+   --> src/main.rs:579:46
+    |
+579 |     pub fn move_player(&mut self, direction: Direction) {
+    |                                              ^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_pass_by_value
+help: consider taking a reference instead
+    |
+579 |     pub fn move_player(&mut self, direction: &Direction) {
+580 |         let current_position = self.player.position();
+581 |         use Direction::*;
+582 |         let dir_values = *match direction {
+583 |             Up => [0, 1],
+584 |             Down => [0, -1],
+  ...
+
+warning: redundant pattern matching, consider using `is_some()`
+   --> src/main.rs:594:16
+    |
+594 |         if let Some(_) = collision_check(proposed_position.clone(), &self.walls[..]) {
+    |         -------^^^^^^^-------------------------------------------------------------- help: try this: `if collision_check(proposed_position.clone(), &self.walls[..]).is_some()`
+    |
+    = note: #[warn(if_let_redundant_pattern_matching)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#if_let_redundant_pattern_matching
+
+warning: using `clone` on a `Copy` type
+   --> src/main.rs:594:42
+    |
+594 |         if let Some(_) = collision_check(proposed_position.clone(), &self.walls[..]) {
+    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^ help: try removing the `clone` call: `proposed_position`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#clone_on_copy
+
+warning: using `clone` on a `Copy` type
+   --> src/main.rs:599:29
+    |
+599 |             collision_check(proposed_position.clone(), &self.crates[..])
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^ help: try removing the `clone` call: `proposed_position`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#clone_on_copy
+
+warning: using `clone` on a `Copy` type
+   --> src/main.rs:606:32
+    |
+606 |             if collision_check(proposed_crate_position.clone(), &self.walls[..]) == None &&
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try removing the `clone` call: `proposed_crate_position`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#clone_on_copy
+
+warning: using `clone` on a `Copy` type
+   --> src/main.rs:607:33
+    |
+607 |                 collision_check(proposed_crate_position.clone(), &self.crates[..]) == None
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try removing the `clone` call: `proposed_crate_position`
+    |
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#clone_on_copy
+
+warning: very complex type used. Consider factoring parts into `type` definitions
+   --> src/main.rs:728:14
+    |
+728 |     screwed: fn(&Crate, &[Wall], &[Crate]) -> (bool, bool),
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: #[warn(type_complexity)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#type_complexity
+
+warning: you seem to be trying to use match for destructuring a single pattern. Consider using `if let`
+   --> src/main.rs:807:13
+    |
+807 | /             match event {
+808 | |                 Event::WindowEvent { event, .. } => {
+809 | |                     match event {
+810 | |                         WindowEvent::KeyboardInput { input, .. } => {
+...   |
+899 | |                 _ => (),
+900 | |             }
+    | |_____________^
+    |
+    = note: #[warn(single_match)] on by default
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#single_match
+help: try this
+    |
+807 |             if let Event::WindowEvent { event, .. } = event {
+808 |     match event {
+809 |         WindowEvent::KeyboardInput { input, .. } => {
+810 |             if input.state == ElementState::Pressed {
+811 |                 if let Some(keycode) = input.virtual_keycode {
+812 |                     match keycode {
+  ...
+
+warning: you are getting the inner pointer of a temporary `CString`
+   --> src/main.rs:882:45
+    |
+882 |                                             CString::new("u_Proj").unwrap().as_ptr(),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+   --> src/main.rs:882:45
+    |
+882 |                                             CString::new("u_Proj").unwrap().as_ptr(),
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+    --> src/main.rs:1131:25
+     |
+1131 |                         CString::new("light_pos").unwrap().as_ptr(),
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+    --> src/main.rs:1131:25
+     |
+1131 |                         CString::new("light_pos").unwrap().as_ptr(),
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+    --> src/main.rs:1140:25
+     |
+1140 |                         CString::new("ambient_strength").unwrap().as_ptr(),
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+    --> src/main.rs:1140:25
+     |
+1140 |                         CString::new("ambient_strength").unwrap().as_ptr(),
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: you are getting the inner pointer of a temporary `CString`
+    --> src/main.rs:1147:25
+     |
+1147 |                         CString::new("spec_samples").unwrap().as_ptr(),
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: that pointer will be invalid outside this expression
+help: assign the `CString` to a variable to extend its lifetime
+    --> src/main.rs:1147:25
+     |
+1147 |                         CString::new("spec_samples").unwrap().as_ptr(),
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#temporary_cstring_as_ptr
+
+warning: this expression borrows a reference that is immediately dereferenced by the compiler
+    --> src/main.rs:1155:41
+     |
+1155 |         let (model, _) = tobj::load_obj(&Path::new("untitled.obj")).unwrap();
+     |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^ help: change this to: `Path::new("untitled.obj")`
+     |
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_borrow
+
+warning: this expression borrows a reference that is immediately dereferenced by the compiler
+    --> src/main.rs:1156:42
+     |
+1156 |         let (monkey, _) = tobj::load_obj(&Path::new("monkey.obj")).unwrap();
+     |                                          ^^^^^^^^^^^^^^^^^^^^^^^^ help: change this to: `Path::new("monkey.obj")`
+     |
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#needless_borrow
+
+warning: it is more idiomatic to loop over references to containers instead of using explicit iteration methods
+    --> src/main.rs:1239:30
+     |
+1239 |                     for i in objects.clone().iter() {
+     |                              ^^^^^^^^^^^^^^^^^^^^^^ help: to write this more concisely, try: `&objects.clone()`
+     |
+     = note: #[warn(explicit_iter_loop)] on by default
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#explicit_iter_loop
+
+warning: Consider using an AtomicBool instead of a Mutex here. If you just want the locking behaviour and not the internal type, consider using Mutex<()>.
+    --> src/main.rs:1366:44
+     |
+1366 |         game.subroutine.insert(3, Arc::new(Mutex::new(false)));
+     |                                            ^^^^^^^^^^^^^^^^^
+     |
+     = note: #[warn(mutex_atomic)] on by default
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#mutex_atomic
+
+warning: Consider using an AtomicBool instead of a Mutex here. If you just want the locking behaviour and not the internal type, consider using Mutex<()>.
+    --> src/main.rs:1367:44
+     |
+1367 |         game.subroutine.insert(3, Arc::new(Mutex::new(false)));
+     |                                            ^^^^^^^^^^^^^^^^^
+     |
+     = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.177/index.html#mutex_atomic
+
+

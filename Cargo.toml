@@ -1,0 +1,16 @@
+[package]
+authors = ["iksf"]
+name = "sokoban"
+version = "0.1.0"
+[dependencies]
+cgmath = "*"
+gl = "*"
+glutin = "*"
+image = "*"
+rand = "*"
+tobj = "*"
+winit = "*"
+
+[profile]
+[profile.release]
+lto = true
